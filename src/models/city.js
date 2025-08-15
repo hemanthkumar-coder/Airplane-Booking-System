@@ -16,9 +16,7 @@ module.exports = (sequelize, DataTypes) => {
       name: {
         type: DataTypes.STRING,
         allowNull: false,
-        validate: {
-          unique: "City name must be unique",
-        },
+        unique: true,
       },
     },
     {

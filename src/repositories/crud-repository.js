@@ -28,6 +28,9 @@ class CrudRepository {
 
   async getAll() {
     const response = await this.model.findAll();
+    if (response.length === 0) {
+      throw new AppError("No Resources Found", StatusCodes.NOT_FOUND);
+    }
     return response;
   }
 

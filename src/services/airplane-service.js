@@ -27,6 +27,9 @@ async function createAirplane(data) {
 async function getAirplanes() {
   try {
     const airplanes = await airplaneRepository.getAll();
+    if (!airplanes) {
+      throw new AppError("No Airplanes Found", StatusCodes.NOT_FOUND);
+    }
     return airplanes;
   } catch (error) {
     throw new AppError(
