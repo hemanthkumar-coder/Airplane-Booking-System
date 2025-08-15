@@ -1,4 +1,5 @@
-const { Logger } = require("../config");
+const { StatusCodes } = require("http-status-codes");
+const { AppError } = require("../utils");
 
 class CrudRepository {
   constructor(model) {
@@ -6,60 +7,37 @@ class CrudRepository {
   }
 
   async create(data) {
-    try {
-      const response = await this.model.create( data );
-      return response;
-    } catch (error) {
-      Logger.error("Something Went Wrong in CRUD:create");
-      console.log(error.message);
-      throw error;
-    }
+    const response = await this.model.create(data);
+    return response;
   }
 
   async delete(data) {
-    try {
-      const response = await this.model.destroy({
-        where: {
-          id: data,
-        },
-      });
-      return response;
-    } catch (error) {
-      Logger.error("Something Went Wrong in CRUD:delete");
-      throw error;
-    }
+    const response = await this.model.destroy({
+      where: {
+        id: data,
+      },
+    });
+    return response;
   }
 
   async getAll() {
-    try {
-      const response = await this.model.findAll();
-      return response;
-    } catch (error) {
-      Logger.error("Something Went Wrong in CRUD:getAll");
-      throw error;
-    }
+    const response = await this.model.findAll();
+    return response;
   }
 
-  async get() {
-    try {
-      const response = await this.model.findByPk();
-      return response;
-    } catch (error) {
-      Logger.error("Something Went Wrong in CRUD:get");
-      throw error;
+  async get(id) {
+    const response = await this.model.findByPk(id);
+    if (!response) {
+      throw new AppError("Not Able to Find Resource", StatusCodes.NOT_FOUND);
     }
+    return response;
   }
 
   async update(id, data) {
-    try {
-      const response = await this.model.update(data, {
-        where: { id: id },
-      });
-      return response;
-    } catch (error) {
-      Logger.error("Something Went Wrong in CRUD:update");
-      throw error;
-    }
+    const response = await this.model.update(data, {
+      where: { id: id },
+    });
+    return response;
   }
 }
 
