@@ -17,6 +17,12 @@ class CrudRepository {
         id: data,
       },
     });
+    if (!response) {
+      throw new AppError(
+        "Resource you want to delete is not found",
+        StatusCodes.NOT_FOUND
+      );
+    }
     return response;
   }
 
@@ -33,10 +39,14 @@ class CrudRepository {
     return response;
   }
 
-  async update(id, data) {
+  async update(data, id) {
     const response = await this.model.update(data, {
       where: { id: id },
     });
+
+    if (response[0] === 0) {
+      throw new AppError("Not Able to Find Resource", StatusCodes.NOT_FOUND);
+    }
     return response;
   }
 }
