@@ -1,9 +1,10 @@
-
-
 {
   "development": {
-    "dialect": "sqlite",
-    "storage": "database.sqlite"
+    "username": "root",
+    "password": "hemanth123",
+    "database": "airplane_db",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
   },
   "test": {
     "username": "root",

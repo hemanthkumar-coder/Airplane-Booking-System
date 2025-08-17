@@ -31,10 +31,8 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
       },
       seatType: {
-        type: DataTypes.ENUM,
-        values: [BUSINESS, PREMIUM_ECONOMY, ECONOMY, FIRST_CLASS],
-        defaultValue: BUSINESS,
-        allowNull: false,
+        type: DataTypes.ENUM("BUSINESS", "PREMIUM_ECONOMY", "ECONOMY", "FIRST_CLASS"),
+        defaultValue: "BUSINESS",
       },
     },
     {
