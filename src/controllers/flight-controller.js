@@ -39,6 +39,26 @@ async function createFlight(req, res) {
   }
 }
 
+/*
+req.query={
+  trips:"BLR-MUM"
+}
+ */
+async function getAllFlights(req, res) {
+  try {
+    const flights = await FlightService.getAllFlights(req.query);
+    SuccessResponse.message = "Successfully Retrieved Flight Details";
+    SuccessResponse.data = flights;
+    res.status(StatusCodes.OK).json(SuccessResponse);
+  } catch (error) {
+    console.log(error);
+    
+    ErrorResponse.error = error;
+    res.status(error.StatusCode).json(ErrorResponse);
+  }
+}
+
 module.exports = {
   createFlight,
+  getAllFlights,
 };
