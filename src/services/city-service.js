@@ -30,9 +30,7 @@ async function createCity(data) {
 async function getCities() {
   try {
     const cities = await cityRepository.getAll();
-    return cities === true
-      ? cities
-      : new AppError("No Cities Found", StatusCodes.NOT_FOUND);
+    return cities;
   } catch (error) {
     throw new AppError(
       "Cannot fetch data of the cities",

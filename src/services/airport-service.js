@@ -1,8 +1,8 @@
 const { Logger } = require("../config");
-const { AirportRespository } = require("../repositories");
+const { AirportRepository } = require("../repositories");
 const { AppError } = require("../utils");
 const { StatusCodes } = require("http-status-codes");
-const airportRepository = new AirportRespository();
+const airportRepository = new AirportRepository();
 
 async function createAirport(data) {
   try {
