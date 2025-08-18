@@ -2,7 +2,7 @@
 /** @type {import('sequelize-cli').Migration} */
 
 const { Enums } = require("../utils");
-const { BUSINESS, ECONOMY, PREMIUM_ECONOMY, FIRST_CLASS } = Enums;
+const { BUSINESS, ECONOMY, PREMIUM_ECONOMY, FIRST_CLASS } = Enums.seatType;
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable("Seats", {
@@ -29,8 +29,9 @@ module.exports = {
         },
       },
       seatType: {
-        type: Sequelize.ENUM("BUSINESS", "PREMIUM_ECONOMY", "ECONOMY", "FIRST_CLASS"),
-        defaultValue: "BUSINESS",
+        type: Sequelize.ENUM,
+        values: [BUSINESS, PREMIUM_ECONOMY, ECONOMY, FIRST_CLASS],
+        defaultValue: BUSINESS,
       },
       createdAt: {
         allowNull: false,

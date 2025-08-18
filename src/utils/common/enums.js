@@ -2,7 +2,7 @@ const seatType = {
   BUSINESS: "Business",
   ECONOMY: "Economy",
   PREMIUM_ECONOMY: "Premium-Economy",
-  First_Class: "First-Class",
+  FIRST_CLASS: "First-Class",
 };
 
 module.exports = { seatType };

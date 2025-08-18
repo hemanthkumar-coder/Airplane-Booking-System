@@ -1,7 +1,7 @@
 "use strict";
 const { Model } = require("sequelize");
 const { Enums } = require("../utils");
-const { BUSINESS, ECONOMY, PREMIUM_ECONOMY, FIRST_CLASS } = Enums;
+const { BUSINESS, ECONOMY, PREMIUM_ECONOMY, FIRST_CLASS } = Enums.seatType;
 module.exports = (sequelize, DataTypes) => {
   class Seat extends Model {
     /**
@@ -31,8 +31,9 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
       },
       seatType: {
-        type: DataTypes.ENUM("BUSINESS", "PREMIUM_ECONOMY", "ECONOMY", "FIRST_CLASS"),
-        defaultValue: "BUSINESS",
+        type: DataTypes.ENUM,
+        values: [BUSINESS, PREMIUM_ECONOMY, ECONOMY, FIRST_CLASS],
+        defaultValue: BUSINESS,
       },
     },
     {
