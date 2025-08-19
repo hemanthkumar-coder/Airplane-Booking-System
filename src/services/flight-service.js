@@ -3,6 +3,7 @@ const { Logger } = require("../config");
 const { FlightRepository } = require("../repositories");
 const { AppError } = require("../utils");
 const { StatusCodes } = require("http-status-codes");
+const db = require("../models");
 const flightRepository = new FlightRepository();
 
 async function createFlight(data) {
@@ -86,12 +87,15 @@ async function getFlight(id) {
 
 async function updateFlightBySeats(data) {
   try {
-    const updatedFlight = await flightRepository.updateFlightBySeats(
-      data.flightId,
-      data.seats,
-      data.dec
-    );
-    return updatedFlight;
+    const result = await db.sequelize.transaction(async (t) => {
+      const updatedFlight = await flightRepository.updateFlightBySeats(
+        data.flightId,
+        data.seats,
+        data.dec
+      );
+      return updatedFlight;
+    });
+    return result;
   } catch (error) {
     if (error.StatusCode === StatusCodes.NOT_FOUND) {
       throw new AppError(
