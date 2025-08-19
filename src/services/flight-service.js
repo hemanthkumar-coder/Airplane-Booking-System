@@ -54,10 +54,7 @@ async function getAllFlights(query) {
     const params = query.sort.split(",");
     const sortFilters = params.map((param) => param.split("_"));
     sortFilter = sortFilters;
-    
-    
   }
-  console.log(sortFilter);
   try {
     const flights = await flightRepository.getAllFlights(
       customFilter,
@@ -65,13 +62,53 @@ async function getAllFlights(query) {
     );
     return flights;
   } catch (error) {
-    console.log(error);
-    
     throw new AppError("Cannot get Flights", StatusCodes.INTERNAL_SERVER_ERROR);
+  }
+}
+
+async function getFlight(id) {
+  try {
+    const flight = await flightRepository.get(id);
+    return flight;
+  } catch (error) {
+    if (error.StatusCode === StatusCodes.NOT_FOUND) {
+      throw new AppError(
+        "Flight you requested is not Found",
+        StatusCodes.NOT_FOUND
+      );
+    }
+    throw new AppError(
+      "Cannot Fetch data of Flight",
+      StatusCodes.INTERNAL_SERVER_ERROR
+    );
+  }
+}
+
+async function updateFlightBySeats(data) {
+  try {
+    const updatedFlight = await flightRepository.updateFlightBySeats(
+      data.flightId,
+      data.seats,
+      data.dec
+    );
+    return updatedFlight;
+  } catch (error) {
+    if (error.StatusCode === StatusCodes.NOT_FOUND) {
+      throw new AppError(
+        "Flight you requested is not Found",
+        StatusCodes.NOT_FOUND
+      );
+    }
+    throw new AppError(
+      "Cannot Update Seats of a Requested Flight",
+      StatusCodes.INTERNAL_SERVER_ERROR
+    );
   }
 }
 
 module.exports = {
   createFlight,
   getAllFlights,
+  getFlight,
+  updateFlightBySeats,
 };

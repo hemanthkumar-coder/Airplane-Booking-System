@@ -8,7 +8,7 @@ function validateCreateRequest(req, res, next) {
     ErrorResponse.message = "Something Went wrong in create request";
     ErrorResponse.error = new AppError(
       ["flightNumber not found in incoming request"],
-      StatusCodes.INTERNAL_SERVER_ERROR
+      StatusCodes.BAD_REQUEST
     );
     return res.status(StatusCodes.BAD_REQUEST).json(ErrorResponse);
   }
@@ -16,7 +16,7 @@ function validateCreateRequest(req, res, next) {
     ErrorResponse.message = "Something Went wrong in create request";
     ErrorResponse.error = new AppError(
       ["airplaneId not found in incoming request"],
-      StatusCodes.INTERNAL_SERVER_ERROR
+      StatusCodes.BAD_REQUEST
     );
     return res.status(StatusCodes.BAD_REQUEST).json(ErrorResponse);
   }
@@ -24,7 +24,7 @@ function validateCreateRequest(req, res, next) {
     ErrorResponse.message = "Something Went wrong in create request";
     ErrorResponse.error = new AppError(
       ["departureAirportId not found in incoming request"],
-      StatusCodes.INTERNAL_SERVER_ERROR
+      StatusCodes.BAD_REQUEST
     );
     return res.status(StatusCodes.BAD_REQUEST).json(ErrorResponse);
   }
@@ -32,7 +32,7 @@ function validateCreateRequest(req, res, next) {
     ErrorResponse.message = "Something Went wrong in create request";
     ErrorResponse.error = new AppError(
       ["arrivalAirportId not found in incoming request"],
-      StatusCodes.INTERNAL_SERVER_ERROR
+      StatusCodes.BAD_REQUEST
     );
     return res.status(StatusCodes.BAD_REQUEST).json(ErrorResponse);
   }
@@ -40,7 +40,7 @@ function validateCreateRequest(req, res, next) {
     ErrorResponse.message = "Something Went wrong in create request";
     ErrorResponse.error = new AppError(
       ["arrivalTime not found in incoming request"],
-      StatusCodes.INTERNAL_SERVER_ERROR
+      StatusCodes.BAD_REQUEST
     );
     return res.status(StatusCodes.BAD_REQUEST).json(ErrorResponse);
   }
@@ -48,7 +48,7 @@ function validateCreateRequest(req, res, next) {
     ErrorResponse.message = "Something Went wrong in create request";
     ErrorResponse.error = new AppError(
       ["departureTime not found in incoming request"],
-      StatusCodes.INTERNAL_SERVER_ERROR
+      StatusCodes.BAD_REQUEST
     );
     return res.status(StatusCodes.BAD_REQUEST).json(ErrorResponse);
   }
@@ -56,7 +56,7 @@ function validateCreateRequest(req, res, next) {
     ErrorResponse.message = "Something Went wrong in create request";
     ErrorResponse.error = new AppError(
       ["price not found in incoming request"],
-      StatusCodes.INTERNAL_SERVER_ERROR
+      StatusCodes.BAD_REQUEST
     );
     return res.status(StatusCodes.BAD_REQUEST).json(ErrorResponse);
   }
@@ -64,7 +64,7 @@ function validateCreateRequest(req, res, next) {
     ErrorResponse.message = "Something Went wrong in create request";
     ErrorResponse.error = new AppError(
       ["totalSeats not found in incoming request"],
-      StatusCodes.INTERNAL_SERVER_ERROR
+      StatusCodes.BAD_REQUEST
     );
     return res.status(StatusCodes.BAD_REQUEST).json(ErrorResponse);
   }
@@ -79,4 +79,16 @@ function validateCreateRequest(req, res, next) {
   next();
 }
 
-module.exports = { validateCreateRequest };
+function validateSeatsUpdateRequest(req, res, next) {
+  if (!req.body.seats) {
+    ErrorResponse.message = "Something Went wrong in Update request";
+    ErrorResponse.error = new AppError(
+      ["seats not found in incoming request"],
+      StatusCodes.BAD_REQUEST
+    );
+    return res.status(StatusCodes.BAD_REQUEST).json(ErrorResponse);
+  }
+  next();
+}
+
+module.exports = { validateCreateRequest, validateSeatsUpdateRequest };
