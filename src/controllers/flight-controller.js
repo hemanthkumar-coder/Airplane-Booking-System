@@ -81,7 +81,7 @@ async function updateSeatsOfFlight(req, res) {
     res.status(StatusCodes.OK).json(SuccessResponse);
   } catch (error) {
     ErrorResponse.error = error;
-    res.status(ErrorResponse.StatusCode).json(ErrorResponse);
+    res.status(StatusCodes.INTERNAL_SERVER_ERROR).json(ErrorResponse);
   }
 }
 

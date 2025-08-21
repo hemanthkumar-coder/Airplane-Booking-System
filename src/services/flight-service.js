@@ -97,6 +97,8 @@ async function updateFlightBySeats(data) {
     });
     return result;
   } catch (error) {
+    console.log(error);
+
     if (error.StatusCode === StatusCodes.NOT_FOUND) {
       throw new AppError(
         "Flight you requested is not Found",
