@@ -35,7 +35,7 @@ Eg.PORT='Your PORT number'
 
 ````
 npm run server
-```
+````
 
 2.And This is it Now you can make API requests to the server
 
