@@ -44,23 +44,24 @@ npm run server
 # Airplane Endpoints
 1.Create Airplane - POST REQUEST- api/v1/flights   - this endpoint takes json req body and create Airplane in the Database
     Sample Request Body
-    ```
-    {
-    "modelNumber":"Airbus A380",
-    "capacity":100
-    }
-    ```
+```
+{
+"modelNumber":"Airbus A380",
+"capacity":100
+}
+ ```
 2.Get Airplanes -GET REQUEST -  api/v1/flights - this endpoint respond you with all availiable airplanes
+
 3.Get Airplane with id - GET REQUEST - api/v1/flights/:id - this endpoint take id in request params and give you details about Airplane with specific id
+
 4.Update Airplane - PATCH REQUEST - api/v1/flights/:id - this request update the Airplanw with given airplane id
     Sample Request Body
-    ```
-    {
-    "capacity":80
-    }
-    ```
+```
+{
+"capacity":80
+}
+```
 5.Delete Airplane - DELETE REQUEST - api/v1/flights/:id - Deletes the Airplane with Given id
-````
 
 # City Endpoints
 
@@ -73,9 +74,11 @@ Sample Request Body
 }
 ```
 
-2.Get Citys -GET REQUEST - api/v1/cities - this endpoint respond you with all availiable Citys
-3.Get City with id - GET REQUEST - api/v1/cities/:id - this endpoint take id in request params and give you details about City with specific id
-4.Update City - PATCH REQUEST - api/v1/cities/:id - this request update the Airplanw with given City id
+2.Get Citys -GET REQUEST - api/v1/cities - this endpoint respond you with all availiable Citys.
+
+3.Get City with id - GET REQUEST - api/v1/cities/:id - this endpoint take id in request params and give you details about City with specific id.
+
+4.Update City - PATCH REQUEST - api/v1/cities/:id - this request update the Airplanw with given City id.
 Sample Request Body
 
 ```
@@ -100,7 +103,9 @@ Sample Request Body
 ```
 
 2.Get Airports -GET REQUEST - api/v1/airports - this endpoint respond you with all availiable Airports
+
 3.Get Airport with id - GET REQUEST - api/v1/airports/:id - this endpoint take id in request params and give you details about Airport with specific id
+
 4.Update Airport - PATCH REQUEST - api/v1/airports/:id - this request update the Airplanw with given Airport id
 Sample Request Body
 
@@ -132,7 +137,9 @@ Sample Request Body
 ```
 
 2.Get Airports -GET REQUEST - api/v1/flights - this endpoint respond you with all availiable Flights
+
 3.Get Flights with id - GET REQUEST - api/v1/flights/:id - this endpoint take id in request params and give you details about Flights with specific id
+
 4.Update Seats in Flight - api/v1/flights/:id/seats - this request takes request body and updates seats of flight on booking
 Request Body
 
